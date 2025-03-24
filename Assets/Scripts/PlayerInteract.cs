@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private InteractableObjects currentInteractable;
+
+    void OnTriggerEnter2D(Collider2D other)
     {
-        
+        if (other.GetComponent<InteractableObjects>())
+        {
+            currentInteractable = other.GetComponent<InteractableObjects>();
+            Debug.Log("Press E to interact");
+        }
     }
 
-    // Update is called once per frame
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.GetComponent<InteractableObjects>())
+        {
+            currentInteractable = null;
+        }
+    }
+
     void Update()
     {
-        
+        if (currentInteractable != null && Input.GetKeyDown(KeyCode.E)) // Press "E" to interact
+        {
+            currentInteractable.Interact();
+        }
     }
 }

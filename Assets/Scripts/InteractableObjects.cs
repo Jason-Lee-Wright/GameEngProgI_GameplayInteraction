@@ -1,28 +1,49 @@
 using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class InteractableObjects : MonoBehaviour
 {
-    public enum InteractionType
+    public enum TypeInteract
     {
-        Nothing,
+        Blank,
         Pickup,
         Info,
         Dialogue
     }
 
     [Header("Type of Interactable")]
-    public InteractionType interType; // Creates a drop-down for selecting the interaction type
+    public TypeInteract interType;
+
+    public string message; // Custom message shown when interacted with
+
+    public TextMeshProUGUI InfoText;
 
     public void Interact()
     {
-        Debug.Log("Interacting with object " + gameObject.name);
+        Debug.Log("Interacting with object: " + gameObject.name);
+
+        switch (interType)
+        {
+            case TypeInteract.Pickup:
+                Pickup();
+                break;
+            case TypeInteract.Info:
+                Info();
+                break;
+            case TypeInteract.Dialogue:
+                Dialogue();
+                break;
+            default:
+                Blank();
+                break;
+        }
     }
 
-    public void Nothing()
+    public void Blank()
     {
-        Debug.Log("Interaction type not defined for " + gameObject.name);
+        Debug.Log("Interaction type not defined for: " + gameObject.name);
     }
 
     public void Pickup()
@@ -33,13 +54,23 @@ public class InteractableObjects : MonoBehaviour
 
     public void Info()
     {
-        Debug.Log("Displaying info message on object: " + gameObject.name);
-        // Add logic to display UI info or a message
+        Debug.Log("Displaying info message: " + gameObject.name);
+
+        InfoText.text = string.Empty;
+        InfoText.text = message;
+        Invoke("ClearMessage", 3);
     }
 
     public void Dialogue()
     {
         Debug.Log("Starting dialogue with: " + gameObject.name);
         // Add dialogue system logic here
+    }
+
+    private void ClearMessage()
+    {
+        Debug.Log("Clearing message");
+
+        InfoText.text = string.Empty;
     }
 }
