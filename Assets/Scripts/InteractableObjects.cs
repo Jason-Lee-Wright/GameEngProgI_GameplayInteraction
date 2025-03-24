@@ -30,8 +30,6 @@ public class InteractableObjects : MonoBehaviour
 
     public void Interact()
     {
-        Debug.Log("Interacting with object: " + gameObject.name);
-
         switch (interType)
         {
             case TypeInteract.Pickup:
@@ -56,8 +54,6 @@ public class InteractableObjects : MonoBehaviour
 
     public void Pickup()
     {
-        Debug.Log("Picking up object: " + gameObject.name);
-
         PlayerInventory.CollectItem(this.gameObject.name);
 
         this.gameObject.SetActive(false);
@@ -65,8 +61,6 @@ public class InteractableObjects : MonoBehaviour
 
     public void Info()
     {
-        Debug.Log("Displaying info message: " + gameObject.name);
-
         InfoText.text = string.Empty;
         InfoText.text = message;
         Invoke("ClearMessage", 3);
