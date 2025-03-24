@@ -5,6 +5,9 @@ using UnityEngine.TextCore.Text;
 
 public class InteractableObjects : MonoBehaviour
 {
+    public PlayerInventory PlayerInventory;
+
+
     public enum TypeInteract
     {
         Blank,
@@ -19,6 +22,11 @@ public class InteractableObjects : MonoBehaviour
     public string message; // Custom message shown when interacted with
 
     public TextMeshProUGUI InfoText;
+
+    private void Start()
+    {
+        InfoText.text = string.Empty;
+    }
 
     public void Interact()
     {
@@ -49,7 +57,10 @@ public class InteractableObjects : MonoBehaviour
     public void Pickup()
     {
         Debug.Log("Picking up object: " + gameObject.name);
-        // Add pickup logic here (e.g., adding to inventory, disabling object, etc.)
+
+        PlayerInventory.CollectItem(this.gameObject.name);
+
+        this.gameObject.SetActive(false);
     }
 
     public void Info()

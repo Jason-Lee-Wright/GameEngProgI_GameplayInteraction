@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 860da88a2162af34bbc730223f2aaa9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerInventory: {fileID: 0}
   interType: 0
   message: 
-  InfoText: {fileID: 8023831581026019107, guid: 18cfbc2fba42bff4b9655e062bdbb781,
-    type: 3}
+  InfoText: {fileID: 0}

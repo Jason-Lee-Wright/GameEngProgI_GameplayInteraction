@@ -7,10 +7,12 @@ public class PlayerInventory : MonoBehaviour
 {
     public TextMeshProUGUI Inventory; // this will simulate an inventory for now.
 
+    [SerializeField]
     private int GemCount = 0;
 
     private void Start()
     {
+        ResetInventory();
         UpdateInventory();
     }
 
@@ -19,11 +21,20 @@ public class PlayerInventory : MonoBehaviour
         if (Item == "Gem")
         {
             GemCount++;
+            Debug.Log(GemCount);
+            UpdateInventory();
         }
     }
 
     void UpdateInventory()
     {
-        Inventory.text = $"Inventory\nGems: {GemCount}\n";
+        Debug.Log("UpdateIn");
+        Inventory.text = $"Inventory\nGems: {GemCount}";
+        Debug.Log(Inventory.text);
+    }
+
+    private void ResetInventory()
+    {
+        GemCount = 0;
     }
 }
