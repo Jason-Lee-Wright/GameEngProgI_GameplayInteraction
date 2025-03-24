@@ -19,7 +19,6 @@ public class PlayerInventory : MonoBehaviour
         if (Item == "Gem")
         {
             GemCount++;
-
         }
     }
 
