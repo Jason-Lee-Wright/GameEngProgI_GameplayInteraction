@@ -61,9 +61,10 @@ public class InteractableObjects : MonoBehaviour
 
     public void Info()
     {
+        CancelInvoke();
         InfoText.text = string.Empty;
         InfoText.text = message;
-        Invoke("ClearMessage", 3);
+        Invoke("ClearMessage", 5);
     }
 
     public void Dialogue()
