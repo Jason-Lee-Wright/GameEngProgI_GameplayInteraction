@@ -26,7 +26,7 @@ public class PlayerInteract : MonoBehaviour
 
     void Update()
     {
-        if (currentInteractable != null && Input.GetKeyDown(KeyCode.E)) // Press "E" to interact
+        if (currentInteractable != null && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space))) // Press "E" to interact
         {
             currentInteractable.Interact();
         }
