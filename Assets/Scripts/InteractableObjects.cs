@@ -7,6 +7,7 @@ public class InteractableObjects : MonoBehaviour
 {
     public PlayerInventory PlayerInventory;
 
+    private DialogManager dialogManager;
 
     public enum TypeInteract
     {
@@ -19,9 +20,17 @@ public class InteractableObjects : MonoBehaviour
     [Header("Type of Interactable")]
     public TypeInteract interType;
 
-    public string message; // Custom message shown when interacted with
 
+    [Header("Info Area")]
+    public string message; // Custom message shown when interacted with
     public TextMeshProUGUI InfoText;
+
+    [TextArea] public string[] Dialog;
+
+    private void Awake()
+    {
+        dialogManager = GetComponent<DialogManager>();
+    }
 
     private void Start()
     {
@@ -70,7 +79,8 @@ public class InteractableObjects : MonoBehaviour
     public void Dialogue()
     {
         Debug.Log("Starting dialogue with: " + gameObject.name);
-        // Add dialogue system logic here
+
+        dialogManager.StartDialog(Dialog);
     }
 
     private void ClearMessage()

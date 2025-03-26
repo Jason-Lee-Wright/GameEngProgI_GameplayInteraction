@@ -11,6 +11,7 @@ public class PlayerMovement_2D : MonoBehaviour
     [Header("Character Stats:")]
     public Vector2 movementDirection;
     public float movementSpeed;
+    public bool CanMove = true;
 
     [Space]
     [Header("References:")]
@@ -29,11 +30,15 @@ public class PlayerMovement_2D : MonoBehaviour
         movementDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         movementSpeed = Mathf.Clamp(movementDirection.magnitude, 0.0f, 1.0f);
         movementDirection.Normalize();
-        Move();
-        Animate();
+        if (CanMove)
+        {
+            Move();
+            Animate();
+        }
+
 
         //Sets the idle to the last direction moved
-        if (Input.GetAxis("Horizontal") >= 0.1f || Input.GetAxis("Horizontal") <= -0.1f || Input.GetAxis("Vertical") >= 0.1f || Input.GetAxis("Vertical") <= -0.1f)
+        if (CanMove && Input.GetAxis("Horizontal") >= 0.1f || Input.GetAxis("Horizontal") <= -0.1f || Input.GetAxis("Vertical") >= 0.1f || Input.GetAxis("Vertical") <= -0.1f)
         {
             animator.SetFloat("LastMoveX", Input.GetAxis("Horizontal"));
             animator.SetFloat("LastMoveY", Input.GetAxis("Vertical"));

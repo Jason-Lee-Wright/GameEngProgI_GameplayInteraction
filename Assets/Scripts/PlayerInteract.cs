@@ -7,6 +7,8 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField]
     private InteractableObjects currentInteractable;
 
+    public bool CanInteract = true;
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.GetComponent<InteractableObjects>())
@@ -26,7 +28,7 @@ public class PlayerInteract : MonoBehaviour
 
     void Update()
     {
-        if (currentInteractable != null && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space))) // Press "E" to interact
+        if (CanInteract && currentInteractable != null && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space))) // Press "E" to interact
         {
             currentInteractable.Interact();
         }
